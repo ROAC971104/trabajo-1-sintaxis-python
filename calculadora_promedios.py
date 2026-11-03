@@ -1,4 +1,4 @@
-import re
+import re, math
 
 
 def ingresar_calificaciones():
@@ -27,7 +27,7 @@ def ingresar_calificaciones():
             print("Debe ingresar un número válido. Intente nuevamente.")
             continue
 
-        if calificacion < 0 or calificacion > 10:
+        if not math.isfinite(calificacion) or (calificacion < 0 or calificacion > 10):
             print("La calificación debe estar entre 0 y 10. Intente nuevamente.")
             continue
 
