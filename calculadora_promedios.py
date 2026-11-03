@@ -21,20 +21,29 @@ def ingresar_calificaciones():
             print("Esa materia ya fue ingresada. Intente con otra.")
             continue
 
-        try:
-            calificacion = float(input("Ingrese la calificación (0-10): "))
-        except ValueError:
-            print("Debe ingresar un número válido. Intente nuevamente.")
-            continue
+        while True:
+            try:
+                calificacion = float(input("Ingrese la calificación (0-10): "))
+            except ValueError:
+                print("Debe ingresar un número válido. Intente nuevamente.")
+                continue
 
-        if not math.isfinite(calificacion) or (calificacion < 0 or calificacion > 10):
-            print("La calificación debe estar entre 0 y 10. Intente nuevamente.")
-            continue
+            if not math.isfinite(calificacion) or calificacion < 0 or calificacion > 10:
+                print("La calificación debe estar entre 0 y 10. Intente nuevamente.")
+                continue
+
+            break
 
         materias.append(materia)
         calificaciones.append(calificacion)
 
-        if input("¿Desea ingresar otra calificación? (s/n): ").lower().strip() != "s":
+        while True:
+            continuar = input("¿Desea ingresar otra calificación? (s/n): ").lower().strip()
+            if continuar in ("s", "n"):
+                break
+            print("Respuesta inválida. Ingrese 's' o 'n'.")
+
+        if continuar == "n":
             break
 
     return materias, calificaciones
